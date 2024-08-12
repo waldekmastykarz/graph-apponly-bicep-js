@@ -1,5 +1,12 @@
-baseName=myapp5
-resource_group_name=rg-weu-$baseName
+# get first argument as baseName
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <baseName>"
+  exit 1
+fi
+
+baseName=$1
+resource_group_name=rg-$baseName
 
 if ! az group show -n $resource_group_name &> /dev/null; then
   echo "Creating resource group $resource_group_name"

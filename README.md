@@ -5,22 +5,19 @@
 ### Local
 
 - rename `local.settings.tmpl.json` to `local.settings.json`
-
-TODO: update
-
-```sh
-npm i
-cd .infra
-./create-cert.sh
-./deploy-myapp-local.sh
-cd ..
-node index.js
-```
+- in command line, run:
+  ```sh
+  cd .infra
+  ./create-cert.sh
+  ./deploy-myapp-local.sh
+  ```
+- In VSCode, press F5
 
 ### Prod
 
-```sh
-npm i
-# zip
-cd .infra
-./deploy-myapp-prod.sh
+- in command line, run:
+  ```sh
+  cd .infra
+  ./deploy-myapp-prod.sh myapp
+  ```
+- in the Azure portal, check that the code ran successfully
