@@ -1,7 +1,8 @@
 extension microsoftGraph
 
-var baseName = resourceGroup().name
-var baseNameLower = replace(toLower(baseName), ' ', '-')
+param baseName string = 'myapp'
+var baseNameLower = toLower(baseName)
+
 var graphAppId = '00000003-0000-0000-c000-000000000000'
 
 func appRoleId(roleName string, roles array) string => filter(roles, r => r.value == roleName)[0].id
@@ -22,5 +23,15 @@ resource applicationReadAllAssignment 'Microsoft.Graph/appRoleAssignedTo@v1.0' =
   appRoleId: appRoleId('Application.Read.All', graphAppRoles)
 }
 
+module func 'myapp.prod.fn.bicep' = {
+  name: 'func'
+  params: {
+    baseName: baseName
+    identityClientId: identity.properties.clientId
+    identityId: identity.id
+  }
+}
+
 output identityId string = identity.properties.clientId
 output spId string = identity.properties.principalId
+output fnAppName string = func.outputs.fnAppName

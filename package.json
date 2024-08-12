@@ -1,18 +1,23 @@
 {
   "name": "bicep-identity",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/functions/*.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "func start",
+    "update-local-settings": "node ./scripts/update-local-settings.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "description": "",
   "dependencies": {
+    "@azure/functions": "^4.5.0",
     "@azure/identity": "^4.4.1",
     "@microsoft/microsoft-graph-client": "^3.0.7",
     "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "azure-functions-core-tools": "^4.0.5907"
   }
 }
